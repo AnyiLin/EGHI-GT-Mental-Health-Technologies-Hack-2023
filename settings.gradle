@@ -1,0 +1,3 @@
+rootProject.name = "MobileApiDemo"
+include ':app'
+include ':mentalabMobileApi'
