@@ -1,4 +1,4 @@
-package com.example.eghihack.ui.main;
+package com.mentalab.ui.main;
 
 import androidx.lifecycle.ViewModel;
 
