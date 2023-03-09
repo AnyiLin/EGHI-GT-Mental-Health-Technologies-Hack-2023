@@ -1,4 +1,4 @@
-package com.example.eghihack.ui.main;
+package com.mentalab.ui.main;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.ViewGroup;
 
-import com.example.eghihack.R;
+import com.mentalab.R;
 public class MainFragment extends Fragment {
 
     public MainViewModel mainViewModel;
@@ -38,7 +38,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(MainFragment.this)
-                        .navigate(R.id.action_mainFragment_to_bluetooth);
+                        .navigate(R.id.action_mainFragment_to_bluetoothFragment);
             }
         });
     }

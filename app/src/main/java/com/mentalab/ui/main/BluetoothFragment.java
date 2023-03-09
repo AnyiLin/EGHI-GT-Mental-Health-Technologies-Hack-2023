@@ -1,4 +1,4 @@
-package com.example.eghihack.ui.main;
+package com.mentalab.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.preference.PreferenceFragmentCompat;
 
-import com.example.eghihack.R;
+import com.mentalab.R;
 
 public abstract class BluetoothFragment extends Fragment {
     private MainViewModel mViewModel;

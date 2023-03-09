@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navmap">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navmap"
+    app:startDestination="@id/mainFragment">
 
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.mentalab.ui.main.MainFragment"
+        android:label="mainpage"
+        tools:layout="@layout/mainpage" >
+        <action
+            android:id="@+id/action_mainFragment_to_bluetoothFragment"
+            app:destination="@id/bluetoothFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bluetoothFragment"
+        android:name="com.mentalab.ui.main.BluetoothFragment"
+        android:label="BluetoothFragment" >
+        <action
+            android:id="@+id/action_bluetoothFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>
