@@ -21,25 +21,13 @@
         />
 
     <Button
-        android:id="@+id/bluetoothPageBackButton3"
-        android:layout_width="70dp"
+        android:id="@+id/bluetoothPageRefreshButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#6E6E6E"
-        android:text="Back"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bluetoothPageBackButton2"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#6E6E6E"
-        android:text="Back"
+        android:text="Refresh Devices"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,9 +47,4 @@
             android:orientation="vertical"/>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
