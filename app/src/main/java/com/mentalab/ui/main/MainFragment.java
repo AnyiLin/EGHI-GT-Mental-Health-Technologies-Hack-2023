@@ -29,8 +29,6 @@ public class MainFragment extends Fragment {
 
     public MainViewModel mainViewModel;
 
-    public ArrayList<Integer> bluetoothScrollIDs;
-
     private MainpageBinding binding;
 
     public static MainFragment newInstance() {
@@ -43,6 +41,7 @@ public class MainFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = MainpageBinding.inflate(inflater, container, false);
+
         return binding.getRoot();
     }
 
@@ -56,7 +55,6 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        binding.button.setVisibility(View.VISIBLE);
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,31 +62,6 @@ public class MainFragment extends Fragment {
                         .navigate(R.id.action_mainFragment_to_bluetoothFragment);
             }
         });
-
-        bluetoothScrollIDs = addBluetoothConnectScrollView();
-    }
-
-    public ArrayList<Integer> addBluetoothConnectScrollView() {
-        ScrollView bluetoothScroll = (ScrollView) getView().findViewById(R.id.bluetoothScrollView);
-        bluetoothScroll.setVisibility(View.VISIBLE);
-        ArrayList<Integer> linearLayoutIDList = new ArrayList<>();
-        for (int counter = 0; counter < 3; counter++) {
-            LinearLayout linearLayout = new LinearLayout(getContext());
-            Button connectButton = new Button(getContext());
-            TextView connectText = new TextView(getContext());
-            linearLayout.addView(connectButton);
-            linearLayout.addView(connectText);
-            connectButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-            connectButton.setText("Connect");
-            connectText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-            connectText.setText("device "+counter);
-            bluetoothScroll.addView(linearLayout);
-            linearLayout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-            int newId = View.generateViewId();
-            linearLayout.setId(newId);
-            linearLayoutIDList.add(newId);
-        }
-        return linearLayoutIDList;
     }
 
     @Override

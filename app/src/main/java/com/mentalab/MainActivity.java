@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.mentalab.databinding.ActivityMainBinding;
 import com.mentalab.exception.CommandFailedException;
@@ -31,18 +33,22 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
+  private AppBarConfiguration appBarConfiguration;
   private ActivityMainBinding binding;
 
   @RequiresApi(api = VERSION_CODES.R)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    //setContentView(R.layout.activity_main);
     int device = 1;
     boolean impMode = false;
 
     binding = ActivityMainBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
+
+    NavHostFragment navHostFragment =
+            (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+    NavController navController = navHostFragment.getNavController();
 
     try {
       ExploreDevice connect = null;
@@ -93,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
         | CommandFailedException e) {
       e.printStackTrace();
     };
-
-    //setContentView(R.layout.mainpage);
   }
 
   // Can be used to test if UI Thread is blocked while running demo
