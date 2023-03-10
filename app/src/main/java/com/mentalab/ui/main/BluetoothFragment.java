@@ -72,6 +72,16 @@ public class BluetoothFragment extends Fragment {
             }
         });
 
+        binding.bluetoothPageRefreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                connectToEEG();
+                bluetoothScrollIDs = addBluetoothConnectScrollView();
+            }
+        });
+
+        connectToEEG();
+
         bluetoothScrollIDs = addBluetoothConnectScrollView();
     }
 
@@ -134,7 +144,7 @@ public class BluetoothFragment extends Fragment {
         binding.bluetoothScrollView.setVisibility(View.VISIBLE);
         binding.linearLayout.setVisibility(View.VISIBLE);
         ArrayList<Integer> linearLayoutIDList = new ArrayList<>();
-        for (int counter = 0; counter < 3; counter++) {
+        for (int counter = 0; counter < 3; counter++) { // TODO: Make this actually reflect all scanned bluetooth devices
             LinearLayout linearLayout = new LinearLayout(getContext());
             Button connectButton = new Button(getContext());
             TextView connectText = new TextView(getContext());
@@ -150,7 +160,13 @@ public class BluetoothFragment extends Fragment {
             connectButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             connectButton.setX(toDp(20));
             connectButton.setWidth((int)toDp(100));
-            connectText.setText("device "+counter);
+            connectButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: Connect to the device found
+                }
+            });
+            connectText.setText("device "+counter); // TODO: Make this actually display the device name
             connectText.setX(toDp(25));
             connectText.setTextSize(toDp(7));
             connectText.setY(toDp(2));
