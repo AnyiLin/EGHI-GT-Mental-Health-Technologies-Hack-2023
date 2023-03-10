@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.mentalab.R;
+import com.mentalab.databinding.MainpageBinding;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,8 +31,19 @@ public class MainFragment extends Fragment {
 
     public ArrayList<Integer> bluetoothScrollIDs;
 
+    private MainpageBinding binding;
+
     public static MainFragment newInstance() {
         return new MainFragment();
+    }
+
+    @Override
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState
+    ) {
+        binding = MainpageBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -39,12 +52,12 @@ public class MainFragment extends Fragment {
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         // TODO: Use the ViewModel
     }
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        Button button = (Button) getView().findViewById(
-                R.id.button);
-        button.setVisibility(View.VISIBLE);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        binding.button.setVisibility(View.VISIBLE);
+        binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(MainFragment.this)
@@ -76,6 +89,12 @@ public class MainFragment extends Fragment {
             linearLayoutIDList.add(newId);
         }
         return linearLayoutIDList;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }
