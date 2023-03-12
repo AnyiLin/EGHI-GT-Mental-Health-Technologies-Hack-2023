@@ -1,13 +1,15 @@
 package com.mentalab;
 
 import android.Manifest;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,28 +19,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.mentalab.databinding.ActivityMainBinding;
-import com.mentalab.exception.CommandFailedException;
-import com.mentalab.exception.InvalidCommandException;
-import com.mentalab.exception.NoBluetoothException;
-import com.mentalab.exception.NoConnectionException;
-import com.mentalab.packets.Packet;
-import com.mentalab.packets.sensors.MarkerPacket;
-import com.mentalab.packets.sensors.exg.EEGPacket;
-import com.mentalab.service.io.ContentServer;
-import com.mentalab.service.io.Subscriber;
-import com.mentalab.ui.main.MainFragment;
-import com.mentalab.utils.commandtranslators.Command;
-import com.mentalab.utils.constants.Topic;
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
   public boolean impMode = false;
   public int device = 1;
 
-  private void createNotificationChannel() {
+  private void createBluetoothNotificationChannel() {
     // Create the NotificationChannel, but only on API 26+ because
     // the NotificationChannel class is new and not in the support library
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -63,6 +48,33 @@ public class MainActivity extends AppCompatActivity {
       notificationManager.createNotificationChannel(channel);
     }
   }
+  private void createConnectionErrorNotificationChannel() {
+    // Create the NotificationChannel, but only on API 26+ because
+    // the NotificationChannel class is new and not in the support library
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      CharSequence name = getString(R.string.bluetoothChannel);
+      String description = getString(R.string.bluetoothChannelDescription);
+      int importance = NotificationManager.IMPORTANCE_DEFAULT;
+      NotificationChannel channel = new NotificationChannel("Connection Error Channel", name, importance);
+      channel.setDescription(description);
+      // Register the channel with the system; you can't change the importance
+      // or other notification behaviors after this
+      NotificationManager notificationManager = getSystemService(NotificationManager.class);
+      notificationManager.createNotificationChannel(channel);
+    }
+  }
+  public void connectionErrorNotification() {createBluetoothNotificationChannel();
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Connection Error Channel")
+            .setSmallIcon(R.drawable.ic_launcher_foreground) // TODO: make this our app logo
+            .setContentTitle("Failed to connect")
+            .setContentText("Failed to connect to the device. Try again or ensure the device is connectable.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true);
+    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+    // notificationId is a unique int for each notification that you must define
+    notificationManager.notify(1, builder.build());
+  }
   private ActivityResultLauncher<String> requestPermissionLauncher =
           registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
             if (isGranted) {
@@ -74,12 +86,23 @@ public class MainActivity extends AppCompatActivity {
               // same time, respect the user's decision. Don't link to system
               // settings in an effort to convince the user to change their
               // decision.
-              createNotificationChannel();
+              createBluetoothNotificationChannel();
+              Intent intent = new Intent();
+              intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+              intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+              intent.addCategory(Intent.CATEGORY_DEFAULT);
+              intent.setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
+              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+              intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+              intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+              PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
               NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Bluetooth Permissions Channel")
                       .setSmallIcon(R.drawable.ic_launcher_foreground) // TODO: make this our app logo
                       .setContentTitle("Bluetooth Permissions Needed")
-                      .setContentText("Bluetooth permissions are required to run this app otherwise it will not function.")
-                      .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                      .setContentText("Bluetooth (or Nearby Devices) permissions are required to run this app otherwise it will not function.")
+                      .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                      .setContentIntent(pendingIntent)
+                      .setAutoCancel(true);
               NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
               // notificationId is a unique int for each notification that you must define

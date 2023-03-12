@@ -1,5 +1,7 @@
 package com.mentalab.ui.main;
 
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Space;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,7 @@ import com.mentalab.utils.constants.Topic;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class BluetoothFragment extends Fragment {
@@ -43,7 +47,19 @@ public class BluetoothFragment extends Fragment {
 
     public ArrayList<Integer> bluetoothScrollIDs;
 
+    private ArrayList<BluetoothDevice> deviceArrayList;
+
     private BluetoothBinding binding;
+
+    private Set<BluetoothDevice> scannedDevices;
+
+    private final int BLUETOOTH_CONNECT_TRIES = 5;
+
+    private int counter;
+
+    Subscriber<EEGPacket> sub;
+
+    Subscriber<MarkerPacket> markerSub;
 
     public static BluetoothFragment newInstance() {
         return new BluetoothFragment() {
@@ -75,28 +91,22 @@ public class BluetoothFragment extends Fragment {
         binding.bluetoothPageRefreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                connectToEEG();
+                scanForEEG();
                 bluetoothScrollIDs = addBluetoothConnectScrollView();
             }
         });
 
-        connectToEEG();
-
+        scanForEEG();
         bluetoothScrollIDs = addBluetoothConnectScrollView();
     }
 
     public void connectToEEG() {
         boolean impMode = ((MainActivity)getActivity()).impMode;
-        int device = ((MainActivity)getActivity()).device;
         try {
-            ExploreDevice connect = null;
-            if(device == 0) connect = MentalabCommands.connect("8524");
-            else if(device == 1) connect = MentalabCommands.connect("CA14");
-            else if(device == 2) connect = MentalabCommands.connect("844C");
-            else throw new IllegalArgumentException("Device ID unknown");
+            @SuppressLint("MissingPermission") ExploreDevice connect = MentalabCommands.connect(deviceArrayList.get(counter).getName());
             connect.acquire();
-            Subscriber<EEGPacket> sub = null;
-            Subscriber<MarkerPacket> markerSub = new Subscriber<MarkerPacket>(Topic.MARKER) {
+            sub = null;
+            markerSub = new Subscriber<MarkerPacket>(Topic.MARKER) {
                 @Override
                 public void accept(Packet packet) {
                     Log.d("Got marker", packet.getData().toString());
@@ -136,15 +146,32 @@ public class BluetoothFragment extends Fragment {
                 | InvalidCommandException
                 | CommandFailedException e) {
             e.printStackTrace();
+            ((MainActivity)getActivity()).connectionErrorNotification();
         };
     }
 
+    public void scanForEEG() {
+        for (int counter = 0; counter<BLUETOOTH_CONNECT_TRIES; counter++) {
+            try {
+                scannedDevices = MentalabCommands.scan();
+                break;
+            } catch (NoBluetoothException e) {
+                scanForEEG();
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
     public ArrayList<Integer> addBluetoothConnectScrollView() {
         binding.linearLayout.removeAllViews();
         binding.bluetoothScrollView.setVisibility(View.VISIBLE);
         binding.linearLayout.setVisibility(View.VISIBLE);
         ArrayList<Integer> linearLayoutIDList = new ArrayList<>();
-        for (int counter = 0; counter < 3; counter++) { // TODO: Make this actually reflect all scanned bluetooth devices
+        deviceArrayList = new ArrayList<>();
+        while (scannedDevices.iterator().hasNext()) {
+            deviceArrayList.add(scannedDevices.iterator().next());
+        }
+        for (counter = 0; counter < deviceArrayList.size(); counter++) { // TODO: Make this actually reflect all scanned bluetooth devices
             LinearLayout linearLayout = new LinearLayout(getContext());
             Button connectButton = new Button(getContext());
             TextView connectText = new TextView(getContext());
@@ -153,23 +180,25 @@ public class BluetoothFragment extends Fragment {
             linearLayout.addView(connectButton);
             linearLayout.addView(connectText);
             connectButton.setText("Connect");
-            connectButton.setTextSize(toDp(7));
+            connectButton.setTextSize(toDp(10));
             connectButton.setAllCaps(false);
             connectButton.setTextColor(getResources().getColor(R.color.black));
             connectButton.setBackgroundTintList(getResources().getColorStateList(R.color.main_blue));
             connectButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             connectButton.setX(toDp(20));
-            connectButton.setWidth((int)toDp(100));
+            connectButton.setWidth((int)toDp(140));
             connectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO: Connect to the device found
+                    connectToEEG();
                 }
             });
-            connectText.setText("device "+counter); // TODO: Make this actually display the device name
+            connectText.setText(deviceArrayList.get(counter).getName()); // TODO: Make this actually display the device name
+            connectText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             connectText.setX(toDp(25));
-            connectText.setTextSize(toDp(7));
-            connectText.setY(toDp(2));
+            connectText.setTextSize(toDp(9));
+            connectText.setY(toDp(0));
             binding.linearLayout.addView(linearLayout);
             int newId = View.generateViewId();
             linearLayout.setId(newId);
