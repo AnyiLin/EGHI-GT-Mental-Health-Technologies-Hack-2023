@@ -173,7 +173,7 @@ public class BluetoothFragment extends Fragment {
         while (scannedDevices.iterator().hasNext()) {
             deviceArrayList.add(scannedDevices.iterator().next());
         }
-        for (counter = 0; counter < deviceArrayList.size(); counter++) { // TODO: Make this actually reflect all scanned bluetooth devices
+        for (counter = 0; counter < deviceArrayList.size(); counter++) {
             LinearLayout linearLayout = new LinearLayout(getContext());
             Button connectButton = new Button(getContext());
             TextView connectText = new TextView(getContext());
@@ -192,11 +192,10 @@ public class BluetoothFragment extends Fragment {
             connectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: Connect to the device found
                     connectToEEG();
                 }
             });
-            connectText.setText(deviceArrayList.get(counter).getName()); // TODO: Make this actually display the device name
+            connectText.setText(deviceArrayList.get(counter).getName());
             connectText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             connectText.setX(toDp(25));
             connectText.setTextSize(toDp(9));

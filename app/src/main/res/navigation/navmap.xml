@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainFragment_to_loadingPage"
             app:destination="@id/loadingPage" />
+        <action
+            android:id="@+id/action_mainFragment_to_runTest"
+            app:destination="@id/runTest" />
     </fragment>
     <fragment
         android:id="@+id/bluetoothFragment"
@@ -56,5 +59,17 @@
         <action
             android:id="@+id/action_loadingPage_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/runTest"
+        android:name="com.mentalab.ui.main.RunTest"
+        android:label="run_test"
+        tools:layout="@layout/run_test" >
+        <action
+            android:id="@+id/action_runTest_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_runTest_to_loadingPage"
+            app:destination="@id/loadingPage" />
     </fragment>
 </navigation>

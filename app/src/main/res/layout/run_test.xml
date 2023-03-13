@@ -32,12 +32,13 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:fontFamily="sans-serif-black"
-            android:text="Run Tests"
+            android:text="Run Test"
             android:textAllCaps="false"
             android:textSize="40dp"
             tools:text="Run Tests"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -48,32 +49,65 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp">
 
-            <CheckBox
-                android:id="@+id/checkBox1"
+            <RadioGroup
+                android:id="@+id/buttonGroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="10 minutes" />
+                android:layout_height="match_parent">
 
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="15 minutes" />
+                <RadioButton
+                    android:id="@+id/tenMinuteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="10 minutes" />
 
-            <CheckBox
-                android:id="@+id/checkBox3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="20 minutes" />
+                <RadioButton
+                    android:id="@+id/fifteenMinuteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="15 minutes" />
 
-            <CheckedTextView
-                android:id="@+id/checkedTextView"
-                android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/twentyMinuteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="20 minutes" />
+
+                <RadioButton
+                    android:id="@+id/otherButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Other" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/otherInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="minutes"
+                        android:inputType="number" />
+                </LinearLayout>
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/runTestButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Minutes"
-                android:text="Custom" />
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:text="Run Test" />
 
         </LinearLayout>
     </ScrollView>

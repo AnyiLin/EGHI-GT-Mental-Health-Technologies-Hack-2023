@@ -74,7 +74,7 @@ public class MainFragment extends Fragment {
                 if (((MainActivity)getActivity()).checkBluetooth()) {
                     if (((MainActivity) getActivity()).connected) {
                         NavHostFragment.findNavController(MainFragment.this)
-                                .navigate(R.id.action_mainFragment_to_bluetoothFragment); // TODO: make this actually work for the test button
+                                .navigate(R.id.action_mainFragment_to_runTest);
                     } else {
                         Toast toast = Toast.makeText(getContext(), "Please connect to a device", Toast.LENGTH_SHORT);
                         toast.show();

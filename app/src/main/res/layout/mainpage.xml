@@ -70,7 +70,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:hapticFeedbackEnabled="false"
-                android:text="Run Tests"
+                android:text="Run Test"
                 android:textAllCaps="false"
                 android:textSize="23dp"
                 android:visibility="visible"

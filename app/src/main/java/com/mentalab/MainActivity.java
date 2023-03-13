@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
   private ActivityMainBinding binding;
 
+  public int timerMinutes;
+
   public boolean impMode = false;
 
   public boolean connected = false;
@@ -154,5 +156,9 @@ public class MainActivity extends AppCompatActivity {
   public void sayHello(View view) {
     Toast toast = Toast.makeText(this, "Hello World!", Toast.LENGTH_SHORT);
     toast.show();
+  }
+
+  public void record(long timeMillis) {
+    EEG.recordWithTimeout(getApplicationContext(), (int)timeMillis);
   }
 }

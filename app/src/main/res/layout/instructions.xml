@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:textSize="20dp"
-                android:text="Firstly, connect to an EEG device from Mentalab via the 'Connect to EEG' button. Once connected to an EEG device you should if not already place the device in a position so that it can record accurate readings, you can then begin testing via the 'Run Test' button. After selecting run tests you can select the time you wish to test for, but it is recommended you test somewhere between 10 and 15 minutes. After running a test you should listen to some music and then run another test repeating th esame steps as before. After testing again you can then click the 'Analyze' button. This will give you results on whether or not the music was beneficial to your mental state or not." />
+                android:text="Firstly, connect to an EEG device from Mentalab via the 'Connect to EEG' button. Once connected to an EEG device you should if not already place the device in a position so that it can record accurate readings, you can then begin testing via the 'Run Test' button. After selecting run tests you can select the time you wish to test for, but it is recommended you test somewhere between 10 and 15 minutes. After running a test you should listen to some music and then run another test repeating the same steps as before. After testing again you can then click the 'Analyze' button. This will give you results on whether or not the music was beneficial to your mental state or not." />
         </LinearLayout>
 
     </ScrollView>

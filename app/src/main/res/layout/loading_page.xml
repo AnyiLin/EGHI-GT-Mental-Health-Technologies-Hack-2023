@@ -8,13 +8,32 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/timer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textAlignment="center"
+        android:fontFamily="sans-serif-black"
         android:gravity="center"
+        android:text="Time Left"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/main_blue"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
-        android:text="TIME LEFT" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:textSize="40sp"
+        android:text="Done"
+        android:fontFamily="sans-serif-black"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="parent"/>
 </FrameLayout>
