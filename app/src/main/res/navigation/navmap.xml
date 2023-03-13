@@ -11,11 +11,17 @@
         android:label="mainpage"
         tools:layout="@layout/mainpage" >
         <action
+            android:id="@+id/action_mainFragment_to_instructions"
+            app:destination="@id/instructions" />
+        <action
             android:id="@+id/action_mainFragment_to_bluetoothFragment"
             app:destination="@id/bluetoothFragment" />
         <action
             android:id="@+id/action_mainFragment_to_analyzeTests"
             app:destination="@id/analyzeTests" />
+        <action
+            android:id="@+id/action_mainFragment_to_loadingPage"
+            app:destination="@id/loadingPage" />
     </fragment>
     <fragment
         android:id="@+id/bluetoothFragment"
@@ -24,9 +30,6 @@
         <action
             android:id="@+id/action_bluetoothFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
-        <action
-            android:id="@+id/action_bluetoothFragment_to_analyzeTests"
-            app:destination="@id/analyzeTests" />
     </fragment>
     <fragment
         android:id="@+id/analyzeTests"
@@ -35,8 +38,23 @@
         <action
             android:id="@+id/action_analyzeTests_to_mainFragment"
             app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instructions"
+        android:name="com.mentalab.ui.main.Instructions"
+        android:label="instructions"
+        tools:layout="@layout/instructions" >
         <action
-            android:id="@+id/action_analyzeTests_to_bluetoothFragment"
-            app:destination="@id/bluetoothFragment" />
+            android:id="@+id/action_instructions_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingPage"
+        android:name="com.mentalab.ui.main.LoadingPage"
+        android:label="loading_page"
+        tools:layout="@layout/loading_page" >
+        <action
+            android:id="@+id/action_loadingPage_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

@@ -11,16 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mentalab.R;
-import com.mentalab.databinding.AnalyzeTestsBinding;
-import com.mentalab.databinding.InstructionsBinding;
+import com.mentalab.databinding.LoadingPageBinding;
+import com.mentalab.databinding.RunTestBinding;
 
-public class Instructions extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link RunTest#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class RunTest extends Fragment {
 
-    InstructionsBinding binding;
+    RunTestBinding binding;
 
     // TODO: Rename and change types and number of parameters
-    public static Instructions newInstance() {;
-        return new Instructions();
+    public static RunTest newInstance() {;
+        return new RunTest();
     }
 
     @Override
@@ -31,10 +36,10 @@ public class Instructions extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.instructionsPageBackButton.setOnClickListener(new View.OnClickListener() {
+        binding.runTestPageBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(Instructions.this)
+                NavHostFragment.findNavController(RunTest.this)
                         .navigate(R.id.action_instructions_to_mainFragment);
             }
         });
@@ -44,7 +49,7 @@ public class Instructions extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = InstructionsBinding.inflate(inflater, container, false);
+        binding = RunTestBinding.inflate(inflater, container, false);
 
         return binding.getRoot();
     }

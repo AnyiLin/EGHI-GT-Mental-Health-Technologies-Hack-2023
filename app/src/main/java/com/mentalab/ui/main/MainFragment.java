@@ -61,6 +61,13 @@ public class MainFragment extends Fragment {
                 }
             }
         });
+        binding.instructionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(MainFragment.this)
+                        .navigate(R.id.action_mainFragment_to_instructions);
+            }
+        });
         binding.testsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

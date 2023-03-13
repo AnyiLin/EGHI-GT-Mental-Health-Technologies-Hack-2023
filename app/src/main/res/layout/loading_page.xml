@@ -15,7 +15,6 @@
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         android:text="TIME LEFT" />
 </FrameLayout>
