@@ -1,6 +1,7 @@
 package com.mentalab;
 
 import android.Manifest;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       CharSequence name = getString(R.string.bluetoothChannel);
       String description = getString(R.string.bluetoothChannelDescription);
-      int importance = NotificationManager.IMPORTANCE_DEFAULT;
+      int importance = NotificationManager.IMPORTANCE_MAX;
       NotificationChannel channel = new NotificationChannel("Bluetooth Permissions Channel", name, importance);
       channel.setDescription(description);
       // Register the channel with the system; you can't change the importance
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       CharSequence name = getString(R.string.bluetoothChannel);
       String description = getString(R.string.bluetoothChannelDescription);
-      int importance = NotificationManager.IMPORTANCE_DEFAULT;
+      int importance = NotificationManager.IMPORTANCE_HIGH;
       NotificationChannel channel = new NotificationChannel("Connection Error Channel", name, importance);
       channel.setDescription(description);
       // Register the channel with the system; you can't change the importance
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             .setSmallIcon(R.drawable.ic_launcher_foreground) // TODO: make this our app logo
             .setContentTitle("Failed to connect")
             .setContentText("Failed to connect to the device. Try again or ensure the device is connectable.")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true);
     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
@@ -100,8 +101,9 @@ public class MainActivity extends AppCompatActivity {
                       .setSmallIcon(R.drawable.ic_launcher_foreground) // TODO: make this our app logo
                       .setContentTitle("Bluetooth Permissions Needed")
                       .setContentText("Bluetooth (or Nearby Devices) permissions are required to run this app otherwise it will not function.")
-                      .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                      .setPriority(NotificationCompat.PRIORITY_MAX)
                       .setContentIntent(pendingIntent)
+                      .setFullScreenIntent(pendingIntent, true)
                       .setAutoCancel(true);
               NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
