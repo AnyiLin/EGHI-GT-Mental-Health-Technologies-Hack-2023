@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
   private ActivityMainBinding binding;
 
   public boolean impMode = false;
-  public int device = 1;
 
   private void createBluetoothNotificationChannel() {
     // Create the NotificationChannel, but only on API 26+ because
