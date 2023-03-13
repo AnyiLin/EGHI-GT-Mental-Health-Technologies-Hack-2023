@@ -13,13 +13,15 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/mainPageImage"
             android:layout_width="wrap_content"
-            android:layout_height="230dp"
-            android:src="@drawable/fortnite"
+            android:layout_height="220dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/white"
+            android:visibility="visible"
             app:srcCompat="@drawable/fortnite"
-            tools:srcCompat="@drawable/fortnite"
-            app:layout_constraintEnd_toTopOf="parent"/>
+            tools:src="@drawable/fortnite"
+            tools:srcCompat="@drawable/fortnite" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -33,11 +35,11 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:hapticFeedbackEnabled="false"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hapticFeedbackEnabled="true"
                 android:text="Connect to EEG Device"
                 android:textAllCaps="false"
                 android:textSize="23dp"
@@ -49,9 +51,9 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:hapticFeedbackEnabled="false"
                 android:text="Instructions"
                 android:textAllCaps="false"
@@ -64,9 +66,9 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:hapticFeedbackEnabled="false"
                 android:text="Run Tests"
                 android:textAllCaps="false"
