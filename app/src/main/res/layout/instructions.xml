@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.Instructions">
+
+    <Button
+        android:id="@+id/instructionsPageBackButton"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#6E6E6E"
+        />
+
+    <ScrollView
+        android:id="@+id/instructionsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/instructionsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Instructions"
+                android:textAllCaps="false"
+                android:textSize="40dp"
+                tools:text="Instructions" />
+
+            <TextView
+                android:id="@+id/instructionsBodyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:textSize="20dp"
+                android:text="Firstly, connect to an EEG device from Mentalab via the 'Connect to EEG' button. Once connected to an EEG device you should if not already place the device in a position so that it can record accurate readings, you can then begin testing via the 'Run Test' button. After selecting run tests you can select the time you wish to test for, but it is recommended you test somewhere between 10 and 15 minutes. After running a test you should listen to some music and then run another test repeating th esame steps as before. After testing again you can then click the 'Analyze' button. This will give you results on whether or not the music was beneficial to your mental state or not." />
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

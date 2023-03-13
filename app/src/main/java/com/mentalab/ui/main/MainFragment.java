@@ -1,6 +1,5 @@
 package com.mentalab.ui.main;
 
-import androidx.annotation.IdRes;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -13,17 +12,11 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mentalab.MainActivity;
 import com.mentalab.R;
 import com.mentalab.databinding.MainpageBinding;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
 
@@ -55,11 +48,42 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.connectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((MainActivity)getActivity()).checkBluetooth()) {
+                    NavHostFragment.findNavController(MainFragment.this)
+                            .navigate(R.id.action_mainFragment_to_bluetoothFragment);
+                } else {
+                    Toast toast = Toast.makeText(getContext(), "Bluetooth/Nearby Devices Permissions Needed", Toast.LENGTH_SHORT);
+                    toast.show();
+                    ((MainActivity)getActivity()).sendBluetoothNotification();
+                }
+            }
+        });
+        binding.testsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((MainActivity)getActivity()).checkBluetooth()) {
+                    if (((MainActivity) getActivity()).connected) {
+                        NavHostFragment.findNavController(MainFragment.this)
+                                .navigate(R.id.action_mainFragment_to_bluetoothFragment); // TODO: make this actually work for the test button
+                    } else {
+                        Toast toast = Toast.makeText(getContext(), "Please connect to a device", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                } else {
+                    Toast toast = Toast.makeText(getContext(), "Bluetooth/Nearby Devices Permissions Needed", Toast.LENGTH_SHORT);
+                    toast.show();
+                    ((MainActivity)getActivity()).sendBluetoothNotification();
+                }
+            }
+        });
+        binding.analyzeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(MainFragment.this)
-                        .navigate(R.id.action_mainFragment_to_bluetoothFragment);
+                        .navigate(R.id.action_mainFragment_to_analyzeTests);
             }
         });
     }

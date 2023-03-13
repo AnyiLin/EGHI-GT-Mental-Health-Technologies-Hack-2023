@@ -83,8 +83,8 @@ public class BluetoothFragment extends Fragment {
         binding.bluetoothPageBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(BluetoothFragment.this)
-                        .navigate(R.id.action_bluetoothFragment_to_mainFragment);
+                    NavHostFragment.findNavController(BluetoothFragment.this)
+                            .navigate(R.id.action_bluetoothFragment_to_mainFragment);
             }
         });
 
@@ -105,6 +105,8 @@ public class BluetoothFragment extends Fragment {
         try {
             @SuppressLint("MissingPermission") ExploreDevice connect = MentalabCommands.connect(deviceArrayList.get(counter).getName());
             connect.acquire();
+            ((MainActivity)getActivity()).EEG = connect;
+            ((MainActivity)getActivity()).connected = true;
             sub = null;
             markerSub = new Subscriber<MarkerPacket>(Topic.MARKER) {
                 @Override

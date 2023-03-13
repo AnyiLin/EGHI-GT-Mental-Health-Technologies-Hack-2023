@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bluetooth_page"
+    android:id="@+id/analyze_tests"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
     <Button
-        android:id="@+id/bluetoothPageBackButton"
+        android:id="@+id/analyzeTestsPageBackButton"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -20,20 +20,8 @@
         android:backgroundTint="#6E6E6E"
         />
 
-    <Button
-        android:id="@+id/bluetoothPageRefreshButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#6E6E6E"
-        android:text="Refresh Devices"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
-        android:id="@+id/bluetoothScrollView"
+        android:id="@+id/analyzeTestsScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
@@ -41,20 +29,20 @@
         app:layout_constraintTop_toBottomOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/analyzeTestsLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-            <TextView
-                android:id="@+id/bluetoothTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Bluetooth"
-                android:textAllCaps="false"
-                android:textSize="40dp"
-                tools:text="Bluetooth" />
+        <TextView
+            android:id="@+id/analyzeTestsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Analyze Tests"
+            android:textAllCaps="false"
+            android:textSize="40dp"
+            tools:text="Analyze Tests" />
         </LinearLayout>
     </ScrollView>
 

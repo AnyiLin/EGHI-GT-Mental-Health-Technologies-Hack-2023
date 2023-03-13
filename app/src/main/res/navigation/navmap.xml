@@ -14,8 +14,8 @@
             android:id="@+id/action_mainFragment_to_bluetoothFragment"
             app:destination="@id/bluetoothFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_mainFragment_to_analyzeTests"
+            app:destination="@id/analyzeTests" />
     </fragment>
     <fragment
         android:id="@+id/bluetoothFragment"
@@ -25,12 +25,18 @@
             android:id="@+id/action_bluetoothFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
         <action
-            android:id="@+id/action_bluetoothFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_bluetoothFragment_to_analyzeTests"
+            app:destination="@id/analyzeTests" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.mentalab.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/analyzeTests"
+        android:name="com.mentalab.ui.main.AnalyzeTests"
+        android:label="AnalyzeTests" >
+        <action
+            android:id="@+id/action_analyzeTests_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_analyzeTests_to_bluetoothFragment"
+            app:destination="@id/bluetoothFragment" />
+    </fragment>
 </navigation>
