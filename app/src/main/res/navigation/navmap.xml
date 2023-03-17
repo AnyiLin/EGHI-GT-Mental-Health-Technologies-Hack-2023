@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_analyzeTests_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_analyzeTests_to_results"
+            app:destination="@id/results" />
     </fragment>
     <fragment
         android:id="@+id/instructions"
@@ -71,5 +74,14 @@
         <action
             android:id="@+id/action_runTest_to_loadingPage"
             app:destination="@id/loadingPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/results"
+        android:name="com.mentalab.ui.main.Results"
+        android:label="results"
+        tools:layout="@layout/results" >
+        <action
+            android:id="@+id/action_results_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

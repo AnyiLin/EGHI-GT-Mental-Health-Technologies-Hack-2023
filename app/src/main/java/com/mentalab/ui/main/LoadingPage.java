@@ -47,7 +47,7 @@ public class LoadingPage extends Fragment {
         timeMinutes = ((MainActivity)getActivity()).timerMinutes;
         long timeMillis = (long)timeMinutes*60*1000;
         long startTime = System.currentTimeMillis();
-        ((MainActivity)getActivity()).record(timeMillis);
+        //((MainActivity)getActivity()).record(timeMillis); //TODO: uncomment this for the final version
         new CountDownTimer(timeMillis, 1000){
             public void onTick(long millisUntilFinished){
                 binding.timer.setText("Time Left:\n"+getTimer(startTime));

@@ -205,6 +205,39 @@ public class BluetoothFragment extends Fragment {
             linearLayout.setId(newId);
             linearLayoutIDList.add(newId);
         }
+
+        // TODO: remove the example device for the final version
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        Button connectButton = new Button(getContext());
+        TextView connectText = new TextView(getContext());
+        linearLayout.setMinimumWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        linearLayout.setMinimumHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+        linearLayout.addView(connectButton);
+        linearLayout.addView(connectText);
+        connectButton.setText("Connect");
+        connectButton.setTextSize(toDp(10));
+        connectButton.setAllCaps(false);
+        connectButton.setTextColor(getResources().getColor(R.color.black));
+        connectButton.setBackgroundTintList(getResources().getColorStateList(R.color.main_blue));
+        connectButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        connectButton.setX(toDp(20));
+        connectButton.setWidth((int)toDp(140));
+        connectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //nothing lol
+            }
+        });
+        connectText.setText("Example Device");
+        connectText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        connectText.setX(toDp(25));
+        connectText.setTextSize(toDp(9));
+        connectText.setY(toDp(0));
+        binding.linearLayout.addView(linearLayout);
+        int newId = View.generateViewId();
+        linearLayout.setId(newId);
+        linearLayoutIDList.add(newId);
+
         return linearLayoutIDList;
     }
 

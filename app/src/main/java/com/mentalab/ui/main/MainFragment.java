@@ -72,7 +72,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (((MainActivity)getActivity()).checkBluetooth()) {
-                    if (((MainActivity) getActivity()).connected) {
+                    if (((MainActivity) getActivity()).connected ||true) { // TODO: remove the ||true for the final version
                         NavHostFragment.findNavController(MainFragment.this)
                                 .navigate(R.id.action_mainFragment_to_runTest);
                     } else {

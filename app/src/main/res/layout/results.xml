@@ -4,10 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.Instructions">
-
+    tools:context=".ui.main.Results">
     <Button
-        android:id="@+id/instructionsPageBackButton"
+        android:id="@+id/resultsPageBackButton"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:text="Back"
@@ -20,7 +19,7 @@
         />
 
     <ScrollView
-        android:id="@+id/instructionsScrollView"
+        android:id="@+id/resultsScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
@@ -33,24 +32,24 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/insctrutionsTitle"
+                android:id="@+id/resultsTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Instructions"
+                android:text="Results"
                 android:textAllCaps="false"
                 android:textSize="40dp"
-                tools:text="Instructions" />
+                tools:text="Results" />
 
             <TextView
-                android:id="@+id/instructionsBodyText"
+                android:id="@+id/resultsBodyText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:textSize="20dp"
-                android:text="Firstly, connect to an EEG device from Mentalab via the 'Connect to EEG' button. Once connected to an EEG device you should if not already place the device in a position so that it can record accurate readings, you can then begin testing via the 'Run Test' button. After selecting run tests you can select the time you wish to test for, but it is recommended you test somewhere between 10 and 15 minutes. After running a test you should listen to some music and then run another test repeating the same steps as before. After testing again you can then click the 'Analyze' button. This will give you results on whether or not the music was beneficial to your mental state or not." />
+                android:text="The results indicate that you are on the right track. Keep it up :)"
+                android:textSize="20dp" />
         </LinearLayout>
 
     </ScrollView>
-</FrameLayout>
+    </FrameLayout>
